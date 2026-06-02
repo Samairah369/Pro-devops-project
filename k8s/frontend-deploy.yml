@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pro-frontend
+  namespace: pro-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pro-frontend
+  template:
+    metadata:
+      labels:
+        app: pro-frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: 827919544150.dkr.ecr.ap-south-1.amazonaws.com/pro-frontend:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pro-frontend-service
+  namespace: pro-production
+spec:
+  type: NodePort
+  selector:
+    app: pro-frontend
+  ports:
+    - port: 80
+      targetPort: 80

@@ -1,0 +1,7 @@
+{
+  "name": "pro-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir build && echo '<h1>🚀 Welcome to Professional Frontend Live with EKS!</h1>' > build/index.html"
+  }
+}

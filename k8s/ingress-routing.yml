@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pro-ingress
+  namespace: pro-production
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/vpc-id: vpc-094b5f502075c40bb
+    alb.ingress.kubernetes.io/subnets: subnet-0f96a20ad148151a5, subnet-01f26ac07e1a56c1e, subnet-0a03fb704c8ebe556
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: pro-backend-service
+                port:
+                  number: 5000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pro-frontend-service
+                port:
+                  number: 80
