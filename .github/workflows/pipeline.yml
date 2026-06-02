@@ -59,7 +59,7 @@ jobs:
 
       - name: Inject Dynamic Images into Manifests
         run: |
-          sed -i "s|image: .*pro-frontend:.*|image: 827919544150.dkr.ecr.ap-south-1.amazonaws.com/pro-frontend:${{ github.sha }}|" k8s/frontend-deploy.yml
+          sed -i "s|image: .*pro-frontend:.*|image: 827919544150.dkr.ecr.ap-south-1.amazonaws.com/pro-backend/pro-frontend:${{ github.sha }}|" k8s/frontend-deploy.yml
           sed -i "s|image: .*pro-backend:.*|image: 827919544150.dkr.ecr.ap-south-1.amazonaws.com/pro-backend:${{ github.sha }}|" k8s/backend-deploy.yml
 
       - name: Apply Namespaces and Configurations
